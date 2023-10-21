@@ -760,6 +760,21 @@ expect_error(predictions(
 
 
 
+# Fast Bayes
+# Q
+# pkgload::load_all()
+# brms_epi <- marginaleffects:::modelarchive_model("brms_epi")
+
+# bench::mark(
+#     comparisons(brms_epi),
+#     check = FALSE,
+#     times = 10)
+
+# # comparisons(brms_epi)    1.32s 
+
+
+# avg_slopes(brms_factor)
+
 source("helpers.R")
 rm(list = ls())
 

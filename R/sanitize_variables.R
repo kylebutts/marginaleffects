@@ -312,12 +312,16 @@ sanitize_variables <- function(variables,
             fun <- fun_categorical
             lab <- lab_categorical
         }
+
+        vectorized_functions_labels <- c("%s - %s", "mean(%s) - mean(%s)")
+
         predictors[[v]] <- list(
             "name" = v,
             "function" = fun,
             "label" = lab,
             "value" = predictors[[v]],
-            "comparison" = comparison)
+            "comparison" = comparison,
+            "vectorized_fun" = lab %in% vectorized_functions_labels)
     }
 
     # epsilon for finite difference

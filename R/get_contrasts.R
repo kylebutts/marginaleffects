@@ -298,11 +298,12 @@ get_contrasts <- function(model,
         keyby = idx]
     }
 
+
     # safe version of comparison
     # unknown arguments
     # singleton vs vector
     # different terms use different functions
-    safefun <- function(hi, lo, y, n, term, cross, wts, tmp_idx, newdata) {
+    safefun <- function(hi, lo, y, n, term, cross, wts, tmp_idx, newdata, vectorized_fun = FALSE) {
         tn <- term[1]
         eps <- variables[[tn]]$eps
         # when cross=TRUE, sanitize_comparison enforces a single function
@@ -325,10 +326,13 @@ get_contrasts <- function(model,
         args <- args[names(args) %in% names(formals(fun))]
         con <- try(do.call("fun", args), silent = TRUE)
 
-        if (!isTRUE(checkmate::check_numeric(con, len = n)) && !isTRUE(checkmate::check_numeric(con, len = 1))) {
-            msg <- sprintf("The function supplied to the `comparison` argument must accept two numeric vectors of predicted probabilities of length %s, and return a single numeric value or a numeric vector of length %s, with no missing value.", n, n) #nolint
-            insight::format_error(msg)
+        if (!vectorized_fun) {
+            if (!isTRUE(checkmate::check_numeric(con, len = n)) && !isTRUE(checkmate::check_numeric(con, len = 1))) {
+                msg <- sprintf("The function supplied to the `comparison` argument must accept two numeric vectors of predicted probabilities of length %s, and return a single numeric value or a numeric vector of length %s, with no missing value.", n, n) #nolint
+                insight::format_error(msg)
+            }
         }
+
         if (length(con) == 1) {
             con <- c(con, rep(NA_real_, length(hi) - 1))
             settings_set("marginaleffects_safefun_return1", TRUE)
@@ -366,18 +370,34 @@ get_contrasts <- function(model,
 
         # loop over columns (draws) and term names because different terms could use different functions
         for (tn in unique(by_idx)) {
-            for (i in seq_len(ncol(draws))) {
-                idx <- by_idx == tn
-                draws[idx, i] <- safefun(
-                    hi = draws_hi[idx, i],
-                    lo = draws_lo[idx, i],
-                    y = draws_or[idx, i],
+            vectorized_fun <- variables[[tn]]$vectorized_fun
+            idx <- by_idx == tn
+            if (isTRUE(vectorized_fun)) {
+            # if (isTRUE(FALSE)) {
+                draws[idx, ] <- safefun(
+                    hi = draws_hi[idx,],
+                    lo = draws_lo[idx,],
+                    y = draws_or[idx,],
                     n = sum(idx),
                     term = out$term[idx],
                     cross = cross,
                     wts = out$marginaleffects_wts_internal[idx],
                     tmp_idx = out$tmp_idx[idx],
-                    newdata = newdata)
+                    newdata = newdata,
+                    vectorized_fun = TRUE)
+            } else {
+                for (i in seq_len(ncol(draws))) {
+                    draws[idx, i] <- safefun(
+                        hi = draws_hi[idx, i],
+                        lo = draws_lo[idx, i],
+                        y = draws_or[idx, i],
+                        n = sum(idx),
+                        term = out$term[idx],
+                        cross = cross,
+                        wts = out$marginaleffects_wts_internal[idx],
+                        tmp_idx = out$tmp_idx[idx],
+                        newdata = newdata)
+                }
             }
         }
 
