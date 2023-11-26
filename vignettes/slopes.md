@@ -414,11 +414,11 @@ slopes(mod, newdata = datagrid(x = -2:2))  |>
     select(estimate, truth)
 #> 
 #>  Estimate
-#>    -7.004
-#>    -3.003
-#>     0.998
-#>     4.998
-#>     8.999
+#>     -7.00
+#>     -3.00
+#>      1.01
+#>      5.01
+#>      9.02
 #> 
 #> Columns: estimate, truth
 ```

@@ -155,27 +155,27 @@ mod <- glm(vs ~ hp * wt + factor(gear), data = mtcars, family = binomial)
 mod |> predictions() |> inferences(method = "simulation")
 #> 
 #>  Estimate Std. Error    2.5 % 97.5 %
-#>  7.84e-01      0.190 2.67e-01  0.974
-#>  7.84e-01      0.162 3.40e-01  0.960
-#>  8.98e-01      0.141 4.55e-01  0.990
-#>  8.74e-01      0.237 1.40e-01  0.996
-#>  1.31e-02      0.190 7.29e-05  0.762
+#>  7.84e-01      0.192 2.75e-01  0.978
+#>  7.84e-01      0.165 3.54e-01  0.960
+#>  8.98e-01      0.143 4.33e-01  0.990
+#>  8.74e-01      0.233 1.63e-01  0.996
+#>  1.31e-02      0.192 4.96e-05  0.782
 #> --- 22 rows omitted. See ?avg_predictions and ?print.marginaleffects --- 
-#>  3.83e-01      0.288 2.19e-02  0.949
-#>  1.21e-06      0.125 2.14e-12  0.386
-#>  6.89e-03      0.154 3.67e-05  0.629
-#>  8.07e-11      0.156 2.22e-16  0.611
-#>  7.95e-01      0.164 3.36e-01  0.965
+#>  3.83e-01      0.296 2.22e-02  0.959
+#>  1.21e-06      0.124 1.30e-12  0.413
+#>  6.89e-03      0.160 3.12e-05  0.671
+#>  8.07e-11      0.154 2.22e-16  0.683
+#>  7.95e-01      0.166 3.56e-01  0.966
 #> Columns: rowid, estimate, std.error, conf.low, conf.high, vs, hp, wt, gear 
 #> Type:  response
 
 mod |> avg_slopes(vcov = ~gear) |> inferences(method = "simulation")
 #> 
 #>  Term Contrast  Estimate Std. Error   2.5 %  97.5 %
-#>  gear    4 - 3 -3.92e-02    0.05741 -0.0943 0.12778
-#>  gear    5 - 3 -1.93e-01    0.27498 -0.4892 0.33422
-#>  hp      dY/dX -5.02e-03    0.00444 -0.0115 0.00441
-#>  wt      dY/dX -3.98e-05    0.31391 -0.6091 0.72789
+#>  gear    4 - 3 -3.92e-02    0.05853 -0.0906 0.14501
+#>  gear    5 - 3 -1.93e-01    0.27595 -0.4874 0.33893
+#>  hp      dY/dX -5.02e-03    0.00433 -0.0115 0.00362
+#>  wt      dY/dX -3.98e-05    0.30229 -0.5107 0.70398
 #> 
 #> Columns: term, contrast, estimate, std.error, conf.low, conf.high 
 #> Type:  response
