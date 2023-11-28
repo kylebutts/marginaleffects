@@ -380,8 +380,7 @@ Examples:
 </li>
 <li>
 
-<code style="white-space: pre;">⁠variables = list(hp = (x) data.frame(low
-= x - 5, high = x + 10))⁠</code>
+`variables = list(hp = \(x) data.frame(low = x - 5, high = x + 10))`
 
 </li>
 <li>
@@ -635,8 +634,7 @@ predictions when all the predictors specified in the
 <td>
 
 string or numeric: weights to use when computing average contrasts or
-slopes. These weights only affect the averaging in
-<code style="white-space: pre;">⁠avg\_\*()⁠</code> or with the
+slopes. These weights only affect the averaging in `avg_*()` or with the
 <code>by</code> argument, and not the unit-level estimates themselves.
 Internally, estimates and weights are passed to the
 <code>weighted.mean()</code> function.
@@ -701,9 +699,8 @@ The column names of the matrix are used as labels in the output.
 String formula to specify linear or non-linear hypothesis tests. If the
 <code>term</code> column uniquely identifies rows, terms can be used in
 the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to
-identify the position of each parameter. The
-<code style="white-space: pre;">⁠b\*⁠</code> wildcard can be used to test
-hypotheses on all estimates. Examples:
+identify the position of each parameter. The `b*` wildcard can be used
+to test hypotheses on all estimates. Examples:
 
 <ul>
 <li>
@@ -723,7 +720,7 @@ hypotheses on all estimates. Examples:
 </li>
 <li>
 
-<code style="white-space: pre;">⁠b\* / b1 = 1⁠</code>
+`b* / b1 = 1`
 
 </li>
 </ul>

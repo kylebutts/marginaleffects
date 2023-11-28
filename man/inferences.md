@@ -147,7 +147,7 @@ Data frame of test data for conformal prediction.
 </td>
 <td>
 Data frame of calibration data for split conformal prediction
-(<code style="white-space: pre;">⁠method=“conformal_split⁠</code>).
+(`method="conformal_split`).
 </td>
 </tr>
 <tr>

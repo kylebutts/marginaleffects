@@ -120,9 +120,8 @@ The column names of the matrix are used as labels in the output.
 String formula to specify linear or non-linear hypothesis tests. If the
 <code>term</code> column uniquely identifies rows, terms can be used in
 the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to
-identify the position of each parameter. The
-<code style="white-space: pre;">⁠b\*⁠</code> wildcard can be used to test
-hypotheses on all estimates. Examples:
+identify the position of each parameter. The `b*` wildcard can be used
+to test hypotheses on all estimates. Examples:
 
 <ul>
 <li>
@@ -142,7 +141,7 @@ hypotheses on all estimates. Examples:
 </li>
 <li>
 
-<code style="white-space: pre;">⁠b\* / b1 = 1⁠</code>
+`b* / b1 = 1`
 
 </li>
 </ul>
@@ -705,7 +704,7 @@ mod <- polr(gear ~ factor(cyl) + hp, dat)
 
 aggregation_fun <- function(model) {
     predictions(model, vcov = FALSE) |>
-        mutate(group = ifelse(group %in% c("3", "4"), "3 &amp; 4", "5")) |>
+        mutate(group = ifelse(group %in% c("3", "4"), "3 & 4", "5")) |>
         summarize(estimate = sum(estimate), .by = c("rowid", "cyl", "group")) |>
         summarize(estimate = mean(estimate), .by = c("cyl", "group")) |>
         rename(term = cyl)
@@ -715,13 +714,13 @@ hypotheses(mod, FUN = aggregation_fun)
 ```
 
 
-         Group Term Estimate Std. Error     z Pr(>|z|)     S  2.5 % 97.5 %
-     3 &amp; 4    6   0.8390     0.0651 12.89   <0.001 123.9 0.7115  0.967
-     3 &amp; 4    4   0.7197     0.1099  6.55   <0.001  34.0 0.5044  0.935
-     3 &amp; 4    8   0.9283     0.0174 53.45   <0.001   Inf 0.8943  0.962
-     5            6   0.1610     0.0651  2.47   0.0134   6.2 0.0334  0.289
-     5            4   0.2803     0.1099  2.55   0.0108   6.5 0.0649  0.496
-     5            8   0.0717     0.0174  4.13   <0.001  14.7 0.0377  0.106
+     Group Term Estimate Std. Error     z Pr(>|z|)     S  2.5 % 97.5 %
+     3 & 4    6   0.8390     0.0651 12.89   <0.001 123.9 0.7115  0.967
+     3 & 4    4   0.7197     0.1099  6.55   <0.001  34.0 0.5044  0.935
+     3 & 4    8   0.9283     0.0174 53.45   <0.001   Inf 0.8943  0.962
+     5        6   0.1610     0.0651  2.47   0.0134   6.2 0.0334  0.289
+     5        4   0.2803     0.1099  2.55   0.0108   6.5 0.0649  0.496
+     5        8   0.0717     0.0174  4.13   <0.001  14.7 0.0377  0.106
 
     Columns: term, group, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high 
 

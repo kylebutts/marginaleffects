@@ -264,8 +264,7 @@ confidence interval.
 <td>
 
 string or numeric: weights to use when computing average contrasts or
-slopes. These weights only affect the averaging in
-<code style="white-space: pre;">⁠avg\_\*()⁠</code> or with the
+slopes. These weights only affect the averaging in `avg_*()` or with the
 <code>by</code> argument, and not the unit-level estimates themselves.
 Internally, estimates and weights are passed to the
 <code>weighted.mean()</code> function.

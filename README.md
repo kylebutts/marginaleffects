@@ -17,6 +17,6 @@
 
 <div align="center">
 <a href="https://marginaleffects.com/vignettes/get_started/">
-    <img src="README_assets/get_started_button.svg" alt="get started button" width="150" />
+    <img src="images/get_started_button.svg" alt="get started button" width="150" />
 </a>
 </div>

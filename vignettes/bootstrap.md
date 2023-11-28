@@ -67,9 +67,9 @@ avg_comparisons(mod, by = "Species", variables = "Petal.Width") |>
   inferences(method = "boot")
 #> 
 #>         Term Contrast    Species Estimate Std. Error  2.5 % 97.5 %
-#>  Petal.Width mean(+1) setosa      -0.1103      0.268 -0.641  0.446
-#>  Petal.Width mean(+1) versicolor  -0.0201      0.170 -0.348  0.308
-#>  Petal.Width mean(+1) virginica    0.0216      0.190 -0.360  0.373
+#>  Petal.Width mean(+1) setosa      -0.1103      0.269 -0.667  0.395
+#>  Petal.Width mean(+1) versicolor  -0.0201      0.163 -0.322  0.316
+#>  Petal.Width mean(+1) virginica    0.0216      0.184 -0.327  0.397
 #> 
 #> Columns: term, contrast, Species, estimate, predicted_lo, predicted_hi, predicted, std.error, conf.low, conf.high 
 #> Type:  response
@@ -84,9 +84,9 @@ est <- avg_comparisons(mod, by = "Species", variables = "Petal.Width") |>
 est
 #> 
 #>         Term Contrast    Species Estimate Std. Error  2.5 % 97.5 %
-#>  Petal.Width mean(+1) setosa      -0.1103      0.267 -0.616  0.452
-#>  Petal.Width mean(+1) versicolor  -0.0201      0.154 -0.334  0.303
-#>  Petal.Width mean(+1) virginica    0.0216      0.176 -0.352  0.355
+#>  Petal.Width mean(+1) setosa      -0.1103      0.257 -0.593  0.408
+#>  Petal.Width mean(+1) versicolor  -0.0201      0.160 -0.350  0.283
+#>  Petal.Width mean(+1) virginica    0.0216      0.189 -0.326  0.398
 #> 
 #> Columns: term, contrast, Species, estimate, predicted_lo, predicted_hi, predicted, std.error, conf.low, conf.high 
 #> Type:  response
@@ -108,10 +108,10 @@ attr(est, "inferences")
 #> 
 #> 
 #> Bootstrap Statistics :
-#>        original       bias    std. error
-#> t1* -0.11025325 0.0009557249   0.2668518
-#> t2* -0.02006005 0.0004245423   0.1542782
-#> t3*  0.02158742 0.0001792643   0.1758740
+#>        original        bias    std. error
+#> t1* -0.11025325  0.0035290526   0.2569902
+#> t2* -0.02006005  0.0000743604   0.1601657
+#> t3*  0.02158742 -0.0015208727   0.1885454
 ```
 
 Or we can extract the individual draws with the `posterior_draws()`
@@ -120,12 +120,12 @@ function:
 ``` r
 posterior_draws(est) |> head()
 #>   drawid        draw        term contrast    Species    estimate predicted_lo predicted_hi predicted std.error   conf.low conf.high
-#> 1      1  0.01074104 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 0.2668518 -0.6157604 0.4515964
-#> 2      1 -0.26195286 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 0.1542782 -0.3344635 0.3030351
-#> 3      1 -0.38787156 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 0.1758740 -0.3515789 0.3551315
-#> 4      2 -0.38835082 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 0.2668518 -0.6157604 0.4515964
-#> 5      2 -0.04859813 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 0.1542782 -0.3344635 0.3030351
-#> 6      2  0.10828552 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 0.1758740 -0.3515789 0.3551315
+#> 1      1 -0.18951319 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 0.2569902 -0.5926761 0.4084748
+#> 2      1  0.05600149 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 0.1601657 -0.3501038 0.2829955
+#> 3      1  0.16936995 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 0.1885454 -0.3260135 0.3983011
+#> 4      2 -0.13856125 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 0.2569902 -0.5926761 0.4084748
+#> 5      2 -0.21711963 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 0.1601657 -0.3501038 0.2829955
+#> 6      2 -0.25339462 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 0.1885454 -0.3260135 0.3983011
 
 posterior_draws(est, shape = "DxP") |> dim()
 #> [1] 500   3
@@ -142,9 +142,9 @@ est <- avg_comparisons(mod, by = "Species", variables = "Petal.Width") |>
 est
 #> 
 #>         Term Contrast    Species Estimate  2.5 % 97.5 %
-#>  Petal.Width mean(+1) setosa      -0.1103 -0.614  0.380
-#>  Petal.Width mean(+1) versicolor  -0.0201 -0.373  0.266
-#>  Petal.Width mean(+1) virginica    0.0216 -0.299  0.349
+#>  Petal.Width mean(+1) setosa      -0.1103 -0.588  0.385
+#>  Petal.Width mean(+1) versicolor  -0.0201 -0.346  0.257
+#>  Petal.Width mean(+1) virginica    0.0216 -0.279  0.340
 #> 
 #> Columns: term, contrast, Species, estimate, predicted_lo, predicted_hi, predicted, conf.low, conf.high 
 #> Type:  response
@@ -154,16 +154,16 @@ attr(est, "inferences")
 #> # A tibble: 101 × 3
 #>    splits           id           estimates       
 #>    <list>           <chr>        <list>          
-#>  1 <split [150/55]> Bootstrap001 <tibble [3 × 7]>
-#>  2 <split [150/52]> Bootstrap002 <tibble [3 × 7]>
-#>  3 <split [150/59]> Bootstrap003 <tibble [3 × 7]>
+#>  1 <split [150/49]> Bootstrap001 <tibble [3 × 7]>
+#>  2 <split [150/63]> Bootstrap002 <tibble [3 × 7]>
+#>  3 <split [150/53]> Bootstrap003 <tibble [3 × 7]>
 #>  4 <split [150/56]> Bootstrap004 <tibble [3 × 7]>
-#>  5 <split [150/53]> Bootstrap005 <tibble [3 × 7]>
-#>  6 <split [150/51]> Bootstrap006 <tibble [3 × 7]>
-#>  7 <split [150/57]> Bootstrap007 <tibble [3 × 7]>
-#>  8 <split [150/53]> Bootstrap008 <tibble [3 × 7]>
-#>  9 <split [150/50]> Bootstrap009 <tibble [3 × 7]>
-#> 10 <split [150/52]> Bootstrap010 <tibble [3 × 7]>
+#>  5 <split [150/49]> Bootstrap005 <tibble [3 × 7]>
+#>  6 <split [150/55]> Bootstrap006 <tibble [3 × 7]>
+#>  7 <split [150/56]> Bootstrap007 <tibble [3 × 7]>
+#>  8 <split [150/51]> Bootstrap008 <tibble [3 × 7]>
+#>  9 <split [150/54]> Bootstrap009 <tibble [3 × 7]>
+#> 10 <split [150/54]> Bootstrap010 <tibble [3 × 7]>
 #> # ℹ 91 more rows
 ```
 
@@ -172,13 +172,13 @@ function:
 
 ``` r
 posterior_draws(est) |> head()
-#>   drawid         draw        term contrast    Species    estimate predicted_lo predicted_hi predicted   conf.low conf.high
-#> 1      1  0.034399064 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 -0.6136978 0.3802848
-#> 2      1 -0.008596652 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 -0.3733688 0.2658963
-#> 3      1 -0.028450285 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 -0.2986332 0.3489888
-#> 4      2 -0.258224771 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 -0.6136978 0.3802848
-#> 5      2  0.015901262 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 -0.3733688 0.2658963
-#> 6      2  0.142481259 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 -0.2986332 0.3489888
+#>   drawid        draw        term contrast    Species    estimate predicted_lo predicted_hi predicted   conf.low conf.high
+#> 1      1 -0.07655531 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 -0.5877449 0.3853695
+#> 2      1  0.10572532 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 -0.3460944 0.2565299
+#> 3      1  0.18989492 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 -0.2788439 0.3398679
+#> 4      2  0.18038811 Petal.Width mean(+1)     setosa -0.11025325     4.957514     4.845263  4.957514 -0.5877449 0.3853695
+#> 5      2 -0.13729106 Petal.Width mean(+1) versicolor -0.02006005     6.327949     6.322072  6.327949 -0.3460944 0.2565299
+#> 6      2 -0.28398208 Petal.Width mean(+1)  virginica  0.02158742     7.015513     7.051542  7.015513 -0.2788439 0.3398679
 
 posterior_draws(est, shape = "PxD") |> dim()
 #> [1]   3 100
@@ -204,10 +204,10 @@ strategy to `marginaleffects` objects:
 avg_comparisons(mod) |> inferences(method = "fwb")
 #> 
 #>          Term            Contrast Estimate Std. Error  2.5 % 97.5 %
-#>  Petal.Length +1                    0.8929      0.077  0.727   1.03
-#>  Petal.Width  +1                   -0.0362      0.157 -0.330   0.29
-#>  Species      versicolor - setosa  -1.4629      0.316 -2.099  -0.84
-#>  Species      virginica - setosa   -1.9842      0.375 -2.697  -1.17
+#>  Petal.Length +1                    0.8929     0.0786  0.742  1.048
+#>  Petal.Width  +1                   -0.0362     0.1558 -0.325  0.284
+#>  Species      versicolor - setosa  -1.4629     0.3277 -2.109 -0.776
+#>  Species      virginica - setosa   -1.9842     0.3807 -2.722 -1.175
 #> 
 #> Columns: term, contrast, estimate, std.error, conf.low, conf.high 
 #> Type:  response
@@ -239,9 +239,9 @@ avg_comparisons(mod, by = "Species", variables = "Petal.Width") |>
   inferences(method = "simulation")
 #> 
 #>         Term Contrast    Species Estimate Std. Error  2.5 % 97.5 %
-#>  Petal.Width mean(+1) setosa      -0.1103      0.285 -0.663  0.444
-#>  Petal.Width mean(+1) versicolor  -0.0201      0.156 -0.345  0.268
-#>  Petal.Width mean(+1) virginica    0.0216      0.161 -0.317  0.335
+#>  Petal.Width mean(+1) setosa      -0.1103      0.285 -0.661  0.470
+#>  Petal.Width mean(+1) versicolor  -0.0201      0.160 -0.324  0.294
+#>  Petal.Width mean(+1) virginica    0.0216      0.172 -0.306  0.345
 #> 
 #> Columns: term, contrast, Species, estimate, std.error, conf.low, conf.high, predicted_lo, predicted_hi, predicted, tmp_idx 
 #> Type:  response

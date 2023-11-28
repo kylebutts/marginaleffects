@@ -297,9 +297,8 @@ The column names of the matrix are used as labels in the output.
 String formula to specify linear or non-linear hypothesis tests. If the
 <code>term</code> column uniquely identifies rows, terms can be used in
 the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to
-identify the position of each parameter. The
-<code style="white-space: pre;">⁠b\*⁠</code> wildcard can be used to test
-hypotheses on all estimates. Examples:
+identify the position of each parameter. The `b*` wildcard can be used
+to test hypotheses on all estimates. Examples:
 
 <ul>
 <li>
@@ -319,7 +318,7 @@ hypotheses on all estimates. Examples:
 </li>
 <li>
 
-<code style="white-space: pre;">⁠b\* / b1 = 1⁠</code>
+`b* / b1 = 1`
 
 </li>
 </ul>
@@ -923,16 +922,16 @@ marginal_means(
 # collapse levels of cyl by averaging
 by <- data.frame(
   cyl = c(4, 6, 8),
-  by = c("4 &amp; 6", "4 &amp; 6", "8"))
+  by = c("4 & 6", "4 & 6", "8"))
 marginal_means(mod,
   variables = "cyl",
   by = by)
 ```
 
 
-            By Mean Std. Error    z Pr(>|z|)     S 2.5 % 97.5 %
-     4 &amp; 6 21.7       1.13 19.2   <0.001 270.8  19.5   24.0
-     8         16.2       1.07 15.1   <0.001 169.0  14.1   18.3
+        By Mean Std. Error    z Pr(>|z|)     S 2.5 % 97.5 %
+     4 & 6 21.7       1.13 19.2   <0.001 270.8  19.5   24.0
+     8     16.2       1.07 15.1   <0.001 169.0  14.1   18.3
 
     Results averaged over levels of: carb, am, cyl 
     Columns: by, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high 
@@ -947,8 +946,8 @@ marginal_means(mod,
 ```
 
 
-              Term Mean Std. Error    z Pr(>|z|)    S 2.5 % 97.5 %
-     4 &amp; 6 - 8 5.54       1.51 3.66   <0.001 12.0  2.57    8.5
+          Term Mean Std. Error    z Pr(>|z|)    S 2.5 % 97.5 %
+     4 & 6 - 8 5.54       1.51 3.66   <0.001 12.0  2.57    8.5
 
     Results averaged over levels of: carb, am, cyl 
     Columns: term, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high 

@@ -1959,9 +1959,8 @@ The column names of the matrix are used as labels in the output.
 String formula to specify linear or non-linear hypothesis tests. If the
 <code>term</code> column uniquely identifies rows, terms can be used in
 the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to
-identify the position of each parameter. The
-<code style="white-space: pre;">⁠b\*⁠</code> wildcard can be used to test
-hypotheses on all estimates. Examples:
+identify the position of each parameter. The `b*` wildcard can be used
+to test hypotheses on all estimates. Examples:
 
 <ul>
 <li>
@@ -1981,7 +1980,7 @@ hypotheses on all estimates. Examples:
 </li>
 <li>
 
-<code style="white-space: pre;">⁠b\* / b1 = 1⁠</code>
+`b* / b1 = 1`
 
 </li>
 </ul>
@@ -2494,7 +2493,7 @@ Columns: term, estimate, std.error, statistic, p.value, s.value, conf.low, conf.
 </span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
 </span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="n">aggregation_fun</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="nf">predictions</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">vcov</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
-</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">        </span><span class="nf">mutate</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;3 &amp;amp; 4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">        </span><span class="nf">mutate</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">ifelse</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;4&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;3 &amp; 4&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;5&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span>
 </span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">        </span><span class="nf">summarize</span><span class="p">(</span><span class="n">estimate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">estimate</span><span class="p">),</span><span class="w"> </span><span class="n">.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;rowid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cyl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;group&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span>
 </span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">        </span><span class="nf">summarize</span><span class="p">(</span><span class="n">estimate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">estimate</span><span class="p">),</span><span class="w"> </span><span class="n">.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;cyl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;group&quot;</span><span class="p">))</span><span class="w"> </span><span class="o">|&gt;</span>
 </span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">        </span><span class="nf">rename</span><span class="p">(</span><span class="n">term</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cyl</span><span class="p">)</span>
@@ -2502,13 +2501,13 @@ Columns: term, estimate, std.error, statistic, p.value, s.value, conf.low, conf.
 </span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>
 </span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="nf">hypotheses</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span><span class="w"> </span><span class="n">FUN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aggregation_fun</span><span class="p">)</span>
 </span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code>     Group Term Estimate Std. Error     z Pr(&gt;|z|)     S  2.5 % 97.5 %
- 3 &amp;amp; 4    6   0.8390     0.0651 12.89   &lt;0.001 123.9 0.7115  0.967
- 3 &amp;amp; 4    4   0.7197     0.1099  6.55   &lt;0.001  34.0 0.5044  0.935
- 3 &amp;amp; 4    8   0.9283     0.0174 53.45   &lt;0.001   Inf 0.8943  0.962
- 5            6   0.1610     0.0651  2.47   0.0134   6.2 0.0334  0.289
- 5            4   0.2803     0.1099  2.55   0.0108   6.5 0.0649  0.496
- 5            8   0.0717     0.0174  4.13   &lt;0.001  14.7 0.0377  0.106
+<div class="language-text highlight"><pre><span></span><code> Group Term Estimate Std. Error     z Pr(&gt;|z|)     S  2.5 % 97.5 %
+ 3 &amp; 4    6   0.8390     0.0651 12.89   &lt;0.001 123.9 0.7115  0.967
+ 3 &amp; 4    4   0.7197     0.1099  6.55   &lt;0.001  34.0 0.5044  0.935
+ 3 &amp; 4    8   0.9283     0.0174 53.45   &lt;0.001   Inf 0.8943  0.962
+ 5        6   0.1610     0.0651  2.47   0.0134   6.2 0.0334  0.289
+ 5        4   0.2803     0.1099  2.55   0.0108   6.5 0.0649  0.496
+ 5        8   0.0717     0.0174  4.13   &lt;0.001  14.7 0.0377  0.106
 
 Columns: term, group, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high
 </code></pre></div>

@@ -1,39 +1,61 @@
+### Basic information
 site_name: The Marginal Effects Zoo
-repo_url: https://github.com/vincentarelbundock/marginaleffects/issues
-repo_name: marginaleffects
+
+### Repo information
+repo_url: $ALTDOC_PACKAGE_URL_GITHUB
+repo_name: $ALTDOC_PACKAGE_NAME
+
+### Plugins
 plugins:
   - search
+
+### Theme
 theme:
-  name: material
+  name: 'material'
   logo: images/marginaleffects_icon.png
   favicon: images/favicon.ico
-  features: navigation.footer
-  palette:
-    - scheme: default
-      primary: white
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: grey
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
+  features:
+    - navigation.footer
+  palette: 
+
+  # Palette toggle for light mode
+  - scheme: default
+    primary: white
+    toggle:
+      icon: material/brightness-7 
+      name: Switch to dark mode
+
+  # Palette toggle for dark mode
+  - scheme: slate
+    primary: grey
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+
   icon:
-    repo: fontawesome/brands/github
-    text: ''
+    repo: fontawesome/brands/github 
+    text: ""
+
+### Remove MkDocs footer
 extra:
-  generator: no
+  generator: false
+
 extra_css:
   - stylesheets/extra.css
+
+
+### Code highlighting
 markdown_extensions:
   - pymdownx.highlight:
-      anchor_linenums: yes
+      anchor_linenums: true
       line_spans: __span
-      pygments_lang_class: yes
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+
+### Navigation tree
 nav:
   - Get Started: vignettes/get_started/
   - Tutorials:
@@ -94,6 +116,9 @@ nav:
         marginal_means: man/marginal_means/
         posterior_draws: man/posterior_draws/
         print: man/print.marginaleffects/
-  - News: NEWS.md/
-  - License: LICENSE.md/
-  - Citation: CITATION.md/
+  - News: $ALTDOC_NEWS/
+  - Changelog: $ALTDOC_CHANGELOG/
+  - Code of Conduct: $ALTDOC_CODE_OF_CONDUCT/
+  - License: $ALTDOC_LICENSE/
+  - Licence: $ALTDOC_LICENCE/
+  - Citation: $ALTDOC_CITATION/

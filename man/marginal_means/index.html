@@ -2194,9 +2194,8 @@ The column names of the matrix are used as labels in the output.
 String formula to specify linear or non-linear hypothesis tests. If the
 <code>term</code> column uniquely identifies rows, terms can be used in
 the formula. Otherwise, use <code>b1</code>, <code>b2</code>, etc. to
-identify the position of each parameter. The
-<code style="white-space: pre;">⁠b\*⁠</code> wildcard can be used to test
-hypotheses on all estimates. Examples:
+identify the position of each parameter. The `b*` wildcard can be used
+to test hypotheses on all estimates. Examples:
 
 <ul>
 <li>
@@ -2216,7 +2215,7 @@ hypotheses on all estimates. Examples:
 </li>
 <li>
 
-<code style="white-space: pre;">⁠b\* / b1 = 1⁠</code>
+`b* / b1 = 1`
 
 </li>
 </ul>
@@ -2778,14 +2777,14 @@ Type:  response
 <div class="language-r highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># collapse levels of cyl by averaging</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">by</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="n">cyl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;4 &amp;amp; 6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;4 &amp;amp; 6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;8&quot;</span><span class="p">))</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;4 &amp; 6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;4 &amp; 6&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;8&quot;</span><span class="p">))</span>
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nf">marginal_means</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="n">variables</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;cyl&quot;</span><span class="p">,</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">by</span><span class="p">)</span>
 </span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code>        By Mean Std. Error    z Pr(&gt;|z|)     S 2.5 % 97.5 %
- 4 &amp;amp; 6 21.7       1.13 19.2   &lt;0.001 270.8  19.5   24.0
- 8         16.2       1.07 15.1   &lt;0.001 169.0  14.1   18.3
+<div class="language-text highlight"><pre><span></span><code>    By Mean Std. Error    z Pr(&gt;|z|)     S 2.5 % 97.5 %
+ 4 &amp; 6 21.7       1.13 19.2   &lt;0.001 270.8  19.5   24.0
+ 8     16.2       1.07 15.1   &lt;0.001 169.0  14.1   18.3
 
 Results averaged over levels of: carb, am, cyl 
 Columns: by, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high 
@@ -2797,8 +2796,8 @@ Type:  response
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">by</span><span class="p">,</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="n">hypothesis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;pairwise&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code>          Term Mean Std. Error    z Pr(&gt;|z|)    S 2.5 % 97.5 %
- 4 &amp;amp; 6 - 8 5.54       1.51 3.66   &lt;0.001 12.0  2.57    8.5
+<div class="language-text highlight"><pre><span></span><code>      Term Mean Std. Error    z Pr(&gt;|z|)    S 2.5 % 97.5 %
+ 4 &amp; 6 - 8 5.54       1.51 3.66   &lt;0.001 12.0  2.57    8.5
 
 Results averaged over levels of: carb, am, cyl 
 Columns: term, estimate, std.error, statistic, p.value, s.value, conf.low, conf.high 

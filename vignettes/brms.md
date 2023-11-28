@@ -686,8 +686,8 @@ predictions(
     by = "x")
 #> 
 #>  x Estimate 2.5 % 97.5 %
-#>  0    0.451 0.340  0.563
-#>  1    0.550 0.439  0.666
+#>  0     0.45 0.339  0.567
+#>  1     0.55 0.435  0.662
 #> 
 #> Columns: x, estimate, conf.low, conf.high 
 #> Type:  response
@@ -704,7 +704,7 @@ avg_comparisons(
     sample_new_levels = "gaussian")
 #> 
 #>  Term Contrast Estimate  2.5 % 97.5 %
-#>     x    1 - 0   0.0979 0.0478  0.159
+#>     x    1 - 0   0.0969 0.0465  0.161
 #> 
 #> Columns: term, contrast, estimate, conf.low, conf.high 
 #> Type:  response
@@ -725,7 +725,7 @@ bm <- brmsmargins(
   effects = "integrateoutRE")
 bm$ContrastSummary |> data.frame()
 #>            M        Mdn         LL        UL PercentROPE PercentMID   CI CIType ROPE  MID Label
-#> 1 0.09838721 0.09676398 0.04814154 0.1594617          NA         NA 0.95    ETI <NA> <NA> AME x
+#> 1 0.09885687 0.09707826 0.04686088 0.1624269          NA         NA 0.95    ETI <NA> <NA> AME x
 ```
 
 See the [alternative software vignette](alternative_software.html) for
@@ -1232,7 +1232,7 @@ comparisons(
 #> Type:  response
 ```
 
-The `hypotheses` function of the `brms` package can also perform
+The `hypothesis()` function of the `brms` package can also perform
 non-linear hypothesis testing, and it generates some convenient
 statistics and summaries. This function accepts a D-by-P matrix of draws
 from the posterior distribution, where D is the number of draws and N is
